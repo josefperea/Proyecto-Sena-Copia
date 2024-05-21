@@ -1,0 +1,9 @@
+.fondo {
+    background-image: url(imagenes/fondos-pantalla-negros-que-son-muy-oscuros-hermosos_899894-5036.avif);
+    height: 500px; 
+}
+
+.titulo {
+    color: white;
+    text-align: center;
+}
