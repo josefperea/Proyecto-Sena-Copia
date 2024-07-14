@@ -1,4 +1,4 @@
-package com.prueba.prueba_apiN2.config.mappers;
+package com.prueba.prueba_apiN2.config;
 
 import com.prueba.prueba_apiN2.controllers.dtos.ProductoDTO;
 import com.prueba.prueba_apiN2.persistance.entities.ProductoEntity;

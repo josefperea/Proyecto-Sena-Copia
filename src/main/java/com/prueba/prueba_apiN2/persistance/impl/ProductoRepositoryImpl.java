@@ -1,6 +1,6 @@
 package com.prueba.prueba_apiN2.persistance.impl;
 
-import com.prueba.prueba_apiN2.config.mappers.ProductoMapper;
+import com.prueba.prueba_apiN2.config.ProductoMapper;
 import com.prueba.prueba_apiN2.persistance.entities.ProductoEntity;
 import com.prueba.prueba_apiN2.persistance.impl.jpa.JPAProductoRepository;
 import com.prueba.prueba_apiN2.services.models.ProductoModel;

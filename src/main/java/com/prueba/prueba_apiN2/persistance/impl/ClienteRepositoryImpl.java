@@ -1,6 +1,6 @@
 package com.prueba.prueba_apiN2.persistance.impl;
 
-import com.prueba.prueba_apiN2.config.mappers.ClienteMapper;
+import com.prueba.prueba_apiN2.config.ClienteMapper;
 import com.prueba.prueba_apiN2.persistance.entities.ClienteEntity;
 import com.prueba.prueba_apiN2.persistance.impl.jpa.JPAClienteRepository;
 import com.prueba.prueba_apiN2.services.models.NotFoundException;
@@ -26,13 +26,7 @@ public class ClienteRepositoryImpl implements ClienteRepository {
 
     @Override
     public Optional<ClienteModel> getCliente(Long clienteId) {
-
-        System.out.println(clienteId);
-
         Optional<ClienteEntity> clienteEntity = jpaClienteRepository.findById(clienteId);
-
-        System.out.println(clienteEntity);
-
         return clienteEntity.isPresent() ? Optional.of(ClienteMapper.toModel(clienteEntity.get())) : Optional.empty();
     }
 

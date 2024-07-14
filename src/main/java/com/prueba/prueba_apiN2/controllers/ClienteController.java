@@ -1,6 +1,6 @@
 package com.prueba.prueba_apiN2.controllers;
 
-import com.prueba.prueba_apiN2.config.mappers.ClienteMapper;
+import com.prueba.prueba_apiN2.config.ClienteMapper;
 import com.prueba.prueba_apiN2.controllers.dtos.ClienteDTO;
 import com.prueba.prueba_apiN2.services.ClienteService;
 import com.prueba.prueba_apiN2.services.models.ClienteModel;

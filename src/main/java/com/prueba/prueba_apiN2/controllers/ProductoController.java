@@ -1,6 +1,6 @@
 package com.prueba.prueba_apiN2.controllers;
 
-import com.prueba.prueba_apiN2.config.mappers.ProductoMapper;
+import com.prueba.prueba_apiN2.config.ProductoMapper;
 import com.prueba.prueba_apiN2.controllers.dtos.ProductoDTO;
 import com.prueba.prueba_apiN2.services.ProductoService;
 import com.prueba.prueba_apiN2.services.models.ProductoModel;
