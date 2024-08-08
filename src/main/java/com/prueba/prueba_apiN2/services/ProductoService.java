@@ -24,7 +24,7 @@ public class ProductoService {
         Optional<ProductoModel> optionalProductoModel = productoRepository.getProducto(productoId);
 
         if (optionalProductoModel.isEmpty()) {
-            throw new NotFoundException("Task not found");
+            throw new NotFoundException("Product not found");
         }
 
         return productoRepository.updateProducto(productoId, ProductoModel.fromData(
@@ -56,7 +56,7 @@ public class ProductoService {
         List<ProductoModel> optionalProductoModel = productoRepository.getAllProductos();
 
         if (optionalProductoModel.isEmpty()) {
-            throw new NotFoundException("Products not found");
+            throw new NotFoundException("No se encontraron productos");
         }
 
         return optionalProductoModel;
