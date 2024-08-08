@@ -55,7 +55,7 @@ public class ClienteService {
         List<ClienteModel> optionalClienteModel = clienteRepository.getAllClientes();
 
         if (optionalClienteModel.isEmpty()) {
-            throw new NotFoundException("Clients not found");
+            throw new NotFoundException("No se encontraron clientes");
         }
 
         return optionalClienteModel;

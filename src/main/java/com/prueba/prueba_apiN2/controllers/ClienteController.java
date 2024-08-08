@@ -1,10 +1,14 @@
 package com.prueba.prueba_apiN2.controllers;
 
 import com.prueba.prueba_apiN2.config.ClienteMapper;
+import com.prueba.prueba_apiN2.config.ProductoMapper;
 import com.prueba.prueba_apiN2.controllers.dtos.ClienteDTO;
+import com.prueba.prueba_apiN2.controllers.dtos.ProductoDTO;
 import com.prueba.prueba_apiN2.services.ClienteService;
 import com.prueba.prueba_apiN2.services.models.ClienteModel;
+import com.prueba.prueba_apiN2.services.models.ProductoModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,15 +27,22 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<ClienteDTO> saveCliente(@RequestBody ClienteDTO request) {
-        ClienteDTO response = ClienteMapper.toDTO(
-                clienteService.saveCliente(
-                        ClienteModel.create(request.getDocumento(), request.getNombre(), request.getTelefono(),
-                                request.getDireccion(), request.getCorreo())
-                )
-        );
+    public ResponseEntity<?>  saveCliente(@RequestBody ClienteDTO request) {
+        try {
+            // Intentar guardar el producto
+            ClienteDTO response = ClienteMapper.toDTO(
+                    clienteService.saveCliente(
+                            ClienteModel.create(request.getDocumento(), request.getNombre(), request.getTelefono(),
+                                    request.getDireccion(), request.getCorreo())
+                    )
+            );
 
-        return ResponseEntity.ok(response);
+            // Si se guarda correctamente, retorna un mensaje de éxito
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Error al guardar el producto: " + e.getMessage());
+        }
     }
 
     @PutMapping("/{clientId}")
@@ -39,7 +50,7 @@ public class ClienteController {
         ClienteDTO response = ClienteMapper.toDTO(
                 clienteService.updateCliente(
                         clientId, request.getDocumento(), request.getNombre(), request.getTelefono(),
-                                request.getDireccion(), request.getCorreo()
+                        request.getDireccion(), request.getCorreo()
                 )
         );
 
@@ -58,10 +69,14 @@ public class ClienteController {
     }
 
     @GetMapping("/getClientes")
-    public ResponseEntity<List<ClienteDTO>> getClientes() {
-        List<ClienteDTO> response = ClienteMapper.toDTOList(clienteService.getClientes());
-
-        return ResponseEntity.ok(response);
+    public ResponseEntity<?> getClientes() {
+        try {
+            List<ClienteDTO> response = ClienteMapper.toDTOList(clienteService.getClientes());
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{clienteId}")
