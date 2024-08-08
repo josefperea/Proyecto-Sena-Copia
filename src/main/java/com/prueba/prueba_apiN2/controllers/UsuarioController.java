@@ -1,5 +1,6 @@
 package com.prueba.prueba_apiN2.controllers;
 
+import com.prueba.prueba_apiN2.controllers.dtos.UsuarioDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.support.SessionStatus;
@@ -7,9 +8,13 @@ import org.springframework.web.bind.annotation.*;
 
 import com.prueba.prueba_apiN2.services.UsuarioService;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/usuario")
 @SessionAttributes("username")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class UsuarioController {
 
     @Autowired
@@ -21,16 +26,25 @@ public class UsuarioController {
 //    }
 
     @PostMapping(value="/login")
-    public String showWelcomePage(Model model, @RequestParam String username, @RequestParam String password){
+    public Map<String, Object> showWelcomePage(Model model, @RequestBody UsuarioDTO usuario){
 
-        boolean isValidUser = service.validateUser(username, password);
+        boolean isValidUser = service.validateUser(usuario.getUsuario(), usuario.getClave());
+        Map<String, Object> response = new HashMap<>();
 
         if (!isValidUser) {
             model.addAttribute("errorMessage", "Access Denied , Invalid Credentials");
-            return model.getAttribute("errorMessage").toString();
+            response.put("message", model.getAttribute("errorMessage").toString());
+            response.put("status", "error");
+
+            return response;
         } else {
-            model.addAttribute("username", username);
-            return "welcome";
+            // model.addAttribute("username", usuario.getUsuario());
+            response.put("usuario", usuario.getUsuario());
+            response.put("clave", usuario.getClave());
+            response.put("message", "Bienvenido " + usuario.getUsuario());
+            response.put("status", "ok");
+            return response;
+
         }
 
 //        model.put("name", name);
