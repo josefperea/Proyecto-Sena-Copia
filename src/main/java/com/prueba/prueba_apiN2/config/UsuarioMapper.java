@@ -34,6 +34,7 @@ public class UsuarioMapper {
 
     public static UsuarioDTO toDTO(UsuarioModel model) {
         return new UsuarioDTO(
+                model.getId(),
                 model.getUsuario(),
                 model.getClave()
         );
