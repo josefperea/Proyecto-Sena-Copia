@@ -12,6 +12,11 @@ public class UsuarioDTO {
         this.clave = clave;
     }
 
+    public UsuarioDTO(String usuario, String clave) {
+        this.usuario = usuario;
+        this.clave = clave;
+    }
+
     public UsuarioDTO() { }
 
     public Long getId() {
