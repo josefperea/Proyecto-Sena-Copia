@@ -60,7 +60,14 @@ function modificarProducto(id) {
 
     reg.forEach((td) => {
         let k = td.dataset;
-        let v = td.innerText;
+        let v = "";
+
+        if (td.querySelector('input')) {
+            v = td.querySelector('input').value;
+        } else {
+            v = td.innerText;
+        }
+
         prod[Object.keys(k)[0]] = v;
     });
 
