@@ -1,6 +1,10 @@
 package com.prueba.prueba_apiN2.controllers.dtos;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.sql.Date;
+
 public class ProductoDTO {
 
     private Long id;
@@ -8,9 +12,10 @@ public class ProductoDTO {
     private String nombre;
     private String unidad_medida;
     private float precio;
-    private String fecha_vencimiento;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date fecha_vencimiento;
 
-    public ProductoDTO(Long id, String cod_barras, String nombre, String unidad_medida, float precio, String fecha_vencimiento) {
+    public ProductoDTO(Long id, String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento) {
         this.id = id;
         this.cod_barras = cod_barras;
         this.nombre = nombre;
@@ -43,7 +48,7 @@ public class ProductoDTO {
         return precio;
     }
 
-    public String getFecha_vencimiento() {
+    public Date getFecha_vencimiento() {
         return fecha_vencimiento;
     }
 }

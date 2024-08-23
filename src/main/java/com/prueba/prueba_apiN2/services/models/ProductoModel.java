@@ -1,14 +1,16 @@
 package com.prueba.prueba_apiN2.services.models;
 
+import java.sql.Date;
+
 public class ProductoModel {
     private Long id;
     private String cod_barras;
     private String nombre;
     private String unidad_medida;
     private float precio;
-    private String fecha_vencimiento;
+    private Date fecha_vencimiento;
 
-    public ProductoModel(Long id, String cod_barras, String nombre, String unidad_medida, float precio, String fecha_vencimiento) {
+    public ProductoModel(Long id, String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento) {
         this.id = id;
         this.cod_barras = cod_barras;
         this.nombre = nombre;
@@ -17,7 +19,7 @@ public class ProductoModel {
         this.fecha_vencimiento = fecha_vencimiento;
     }
 
-    public ProductoModel(String cod_barras, String nombre, String unidad_medida, float precio, String fecha_vencimiento) {
+    public ProductoModel(String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento) {
         this.cod_barras = cod_barras;
         this.nombre = nombre;
         this.unidad_medida = unidad_medida;
@@ -61,19 +63,19 @@ public class ProductoModel {
         this.precio = precio;
     }
 
-    public String getFecha_vencimiento() {
+    public Date getFecha_vencimiento() {
         return fecha_vencimiento;
     }
 
-    public void setFecha_vencimiento(String fecha_vencimiento) {
+    public void setFecha_vencimiento(Date fecha_vencimiento) {
         this.fecha_vencimiento = fecha_vencimiento;
     }
 
-    public static ProductoModel create(String cod_barras, String nombre, String unidad_medida, float precio, String fecha_vencimiento) {
+    public static ProductoModel create(String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento) {
         return new ProductoModel(cod_barras, nombre, unidad_medida, precio, fecha_vencimiento);
     }
 
-    public static ProductoModel fromData(Long id, String cod_barras, String nombre, String unidad_medida, float precio, String fecha_vencimiento) {
+    public static ProductoModel fromData(Long id, String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento) {
         return new ProductoModel(id, cod_barras, nombre, unidad_medida, precio, fecha_vencimiento);
     }
 }

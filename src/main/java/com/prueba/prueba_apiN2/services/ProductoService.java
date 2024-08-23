@@ -7,6 +7,7 @@ import com.prueba.prueba_apiN2.services.repositories.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public class ProductoService {
         return productoRepository.saveProducto(productoModel);
     }
 
-    public ProductoModel updateProducto(Long productoId, String cod_barras, String nombre, String unidad_medida, float precio, String fecha_vencimiento) {
+    public ProductoModel updateProducto(Long productoId, String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento) {
         Optional<ProductoModel> optionalProductoModel = productoRepository.getProducto(productoId);
 
         if (optionalProductoModel.isEmpty()) {

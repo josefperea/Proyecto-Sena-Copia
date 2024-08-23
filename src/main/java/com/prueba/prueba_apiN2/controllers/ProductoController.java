@@ -87,8 +87,6 @@ public class ProductoController {
 
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-            // Manejar cualquier excepción que ocurra durante el proceso de guardado
-            // Retorna un mensaje de error
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(e.getMessage());
         }
@@ -99,11 +97,8 @@ public class ProductoController {
 
         try {
             productoService.deleteProducto(productoId);
-
             return ResponseEntity.ok("ok");
         } catch (Exception e) {
-            // Manejar cualquier excepción que ocurra durante el proceso de guardado
-            // Retorna un mensaje de error
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(e.getMessage());
         }

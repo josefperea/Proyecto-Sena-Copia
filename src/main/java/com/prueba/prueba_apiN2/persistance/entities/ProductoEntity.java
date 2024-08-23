@@ -2,6 +2,8 @@ package com.prueba.prueba_apiN2.persistance.entities;
 
 import jakarta.persistence.*;
 
+import java.sql.Date;
+
 @Entity
 @Table(name = "productos")
 public class ProductoEntity {
@@ -22,9 +24,9 @@ public class ProductoEntity {
     private float precio;
 
     @Column(name = "fecha_vencimiento")
-    private String fecha_vencimiento;
+    private Date fecha_vencimiento;
 
-    public ProductoEntity(Long id, String cod_barras, String nombre, String unidad_medida, float precio, String fecha_vencimiento) {
+    public ProductoEntity(Long id, String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento) {
         this.id = id;
         this.cod_barras = cod_barras;
         this.nombre = nombre;
@@ -76,11 +78,11 @@ public class ProductoEntity {
         this.precio = precio;
     }
 
-    public String getFecha_vencimiento() {
+    public Date getFecha_vencimiento() {
         return fecha_vencimiento;
     }
 
-    public void setFecha_vencimiento(String fecha_vencimiento) {
+    public void setFecha_vencimiento(Date fecha_vencimiento) {
         this.fecha_vencimiento = fecha_vencimiento;
     }
 }

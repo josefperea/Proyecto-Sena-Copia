@@ -20,10 +20,10 @@
                             llenarTablaProductos(result);
                         }, 2000);
                     } else {
-                        showAlertModal(result, 'success', true);
+                        showAlertModal(result, 'danger', "Producto", true);
                     }
                 } catch (error) {
-                    showAlertModal(text, 'success', true);
+                    showAlertModal(text, 'danger', "Producto", true);
                 }
             })
             .catch(error => {
@@ -35,17 +35,33 @@
 
     function llenarTablaProductos(productos) {
 
-            let texto = "";
+        let texto = "";
+
+        let odd = false;
 
         productos.forEach((value) => {
-            texto += `<tr>
-            <td>${value.cod_barras}</td>
-            <td>${value.nombre}</td>
-            <td>${value.unidad_medida}</td>
-            <td>${value.precio}</td>
-            <td>${value.fecha_vencimiento}</td>
-            <td class='able-action-buttons'>
-                <button class='btn btn-warning btn-sm' title='Modificar'>
+            if (odd) { odd = false; clase_par = "par"; }
+            else { odd = true; clase_par = "impar"; }
+
+            texto += `<tr data-id="${value.id}">
+            <td class="${clase_par}" contenteditable="true" data-cod_barras="">${value.cod_barras}</td>
+            <td class="${clase_par}" contenteditable="true" data-nombre="">${value.nombre}</td>
+            <td class="${clase_par}" data-unidad_medida="">
+                <input list="unidades" name="unidades" id="unidades_input" placeholder="Unidad Medida" 
+                    value="${value.unidad_medida}" onkeydown="evitarTeclas(this, event);" autocomplete="off" >
+                <datalist id="unidades">
+                  <option value="Unidades">
+                  <option value="Kilos">
+                  <option value="Gramos">
+                  <option value="Litros">
+                  <option value="Metros">
+                  <option value="Centimetros">
+                </datalist>
+            </td>
+            <td class="${clase_par}" contenteditable="true" data-precio="">${value.precio}</td>
+            <td class="${clase_par}" data-fecha_vencimiento="">${value.fecha_vencimiento}</td>
+            <td class='able-action-buttons ${clase_par}'>
+                <button class='btn btn-warning btn-sm' title='Modificar' onclick='modificarProducto(${value.id})'>
                     <i class='bi bi-pencil-square'></i>
                 </button>
                 <button class='btn btn-danger btn-sm' title='Eliminar' onclick='eliminarProducto(${value.id})'>
