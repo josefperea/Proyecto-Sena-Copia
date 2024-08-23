@@ -31,7 +31,7 @@
                     <div class="tab-content">
                         <!-- credit card info-->
                         <div id="credit-card" class="tab-pane fade show active pt-3">
-                            <form role="form">
+                            <form role="form" id="cliente-form">
                                 <div class="form-group">
                                     <label for="Documento"><h6>Documento</h6></label>
                                     <div class="input-group mb-3">
@@ -50,21 +50,21 @@
                                     <label for="Telefono"><h6>Telefono</h6></label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text bi-telephone-fill"></span>
-                                        <input type="number" name="telefono" placeholder="Telefono" required class="form-control ">
+                                        <input type="number" name="telefono" placeholder="Telefono" class="form-control ">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="Direccion"><h6>Direccion</h6></label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text bi-geo-alt-fill"></span>
-                                        <input type="number" name="direccion" placeholder="Dirección" required class="form-control ">
+                                        <input type="text" name="direccion" placeholder="Dirección" class="form-control ">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="Correo"><h6>Correo</h6></label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text bi-envelope-fill"></span>
-                                        <input type="email" name="correo" placeholder="Correo" required class="form-control">
+                                        <input type="email" name="correo" placeholder="Correo" class="form-control">
                                     </div>
                                 </div>
                                 <div class="card-footer"> <button type="button" class="subscribe btn btn-primary btn-block shadow-sm" id="btn-cliente"> Crear </button>

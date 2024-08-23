@@ -23,7 +23,7 @@ public class ClienteService {
         Optional<ClienteModel> optionalClienteModel = clienteRepository.getCliente(clienteId);
 
         if (optionalClienteModel.isEmpty()) {
-            throw new NotFoundException("Task not found");
+            throw new NotFoundException("Cliente no encontrado");
         }
 
         return clienteRepository.updateCliente(clienteId, ClienteModel.fromData(
@@ -41,7 +41,7 @@ public class ClienteService {
         Optional<ClienteModel> optionalClienteModel = clienteRepository.getCliente(clienteId);
 
         if (optionalClienteModel.isEmpty()) {
-            throw new NotFoundException("Task not found");
+            throw new NotFoundException("Cliente no encontrado");
         }
 
         return optionalClienteModel.get();

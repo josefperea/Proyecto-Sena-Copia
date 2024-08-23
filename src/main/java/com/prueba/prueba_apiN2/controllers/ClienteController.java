@@ -80,8 +80,13 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{clienteId}")
-    public ResponseEntity<Void> deleteCliente(@PathVariable Long clienteId) {
-        clienteService.deleteCliente(clienteId);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<?> deleteCliente(@PathVariable Long clienteId) {
+        try {
+            clienteService.deleteCliente(clienteId);
+            return ResponseEntity.ok("ok");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
     }
 }

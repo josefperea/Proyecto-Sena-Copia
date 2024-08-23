@@ -9,6 +9,15 @@ body {
     margin-bottom: 20px;
 }
 
+.par {
+    background-color: white !important;
+}
+
+
+.impar {
+    background-color: #D3D3D3 !important;
+}
+
 .bg-dark {
     background-color: #001f3f !important; /* Azul oscuro */
 }
@@ -26,7 +35,13 @@ body {
 
 }
 
+table td input {
+    border: none;
+}
 
+.able-action-buttons {
+    text-align: center;
+}
 
 .overlay {
     position: absolute;

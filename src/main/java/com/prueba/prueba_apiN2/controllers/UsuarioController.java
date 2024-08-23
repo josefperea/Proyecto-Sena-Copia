@@ -32,7 +32,7 @@ public class UsuarioController {
         Map<String, Object> response = new HashMap<>();
 
         if (!isValidUser) {
-            model.addAttribute("errorMessage", "Access Denied , Invalid Credentials");
+            model.addAttribute("errorMessage", "Acceso Denegado, Credenciales Invalidas");
             response.put("message", model.getAttribute("errorMessage").toString());
             response.put("status", "error");
 

@@ -29,18 +29,17 @@ function login(data) {
         .then(response => response.json())
         .then(result => {
             if (result.status == "ok") {
-                showAlertModal(result.message, "success", true);
+                showAlertModal(result.message, "success", "Inicio", true);
 
                 localStorage.setItem("session", true);
                 localStorage.setItem("usuario", result.usuario);
-                localStorage.setItem("clave", result.usuario);
 
                 setTimeout(function() {
                     window.location.href = "http://localhost:8080/app/principal.html";
                 }, 2000); // 3000 milisegundos = 3 segundos
 
             } else {
-                alertaBtsp(result.message);
+                showAlertModal(result.message, "danger", "Inicio", false)
             }
         })
         .catch(error => {

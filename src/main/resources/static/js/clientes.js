@@ -21,10 +21,10 @@ function obtenerClientes() {
                         llenarTablaClientes(result);
                     }, 2000);
                 } else {
-                    showAlertModal(result, 'success');
+                    showAlertModal(result, 'danger', "Clientes", false);
                 }
             } catch (error) {
-                showAlertModal(text, 'danger');
+                showAlertModal(text, 'danger', "Clientes", false);
             }
         })
         .catch(error => {
@@ -37,19 +37,24 @@ function obtenerClientes() {
 function llenarTablaClientes(clientes) {
 
     let texto = "";
+    let odd = false;
 
     clientes.forEach((value) => {
-        texto += `<tr>
-            <td>${value.documento}</td>
-            <td>${value.nombre}</td>
-            <td>${value.telefono}</td>
-            <td>${value.direccion}</td>
-            <td>${value.correo}</td>
+
+        if (odd) { odd = false; clase_par = "par"; }
+        else { odd = true; clase_par = "impar"; }
+
+        texto += `<tr data-id='${value.id}'>
+            <td contenteditable="true" data-documento="ads">${value.documento}</td>
+            <td contenteditable="true" data-nombre="ads">${value.nombre}</td>
+            <td contenteditable="true" data-telefono="ads">${value.telefono}</td>
+            <td contenteditable="true" data-direccion="ads">${value.direccion}</td>
+            <td contenteditable="true" data-correo="ads">${value.correo}</td>
             <td class='able-action-buttons'>
-                <button class='btn btn-warning btn-sm' title='Modificar'>
+                <button class='btn btn-warning btn-sm' title='Modificar' onclick='modificarCliente(${value.id})'>
                     <i class='bi bi-pencil-square'></i>
                 </button>
-                <button class='btn btn-danger btn-sm' title='Eliminar'>
+                <button class='btn btn-danger btn-sm' title='Eliminar' onclick='eliminarCliente(${value.id})'>
                     <i class='bi bi-trash-fill'></i>
                 </button>
             </td>
