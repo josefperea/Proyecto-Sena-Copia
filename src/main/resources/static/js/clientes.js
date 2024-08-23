@@ -45,12 +45,12 @@ function llenarTablaClientes(clientes) {
         else { odd = true; clase_par = "impar"; }
 
         texto += `<tr data-id='${value.id}'>
-            <td contenteditable="true" data-documento="ads">${value.documento}</td>
-            <td contenteditable="true" data-nombre="ads">${value.nombre}</td>
-            <td contenteditable="true" data-telefono="ads">${value.telefono}</td>
-            <td contenteditable="true" data-direccion="ads">${value.direccion}</td>
-            <td contenteditable="true" data-correo="ads">${value.correo}</td>
-            <td class='able-action-buttons'>
+            <td class="${clase_par}" contenteditable="true" data-documento="ads">${value.documento}</td>
+            <td class="${clase_par}" contenteditable="true" data-nombre="ads">${value.nombre}</td>
+            <td class="${clase_par}" contenteditable="true" data-telefono="ads">${value.telefono}</td>
+            <td class="${clase_par}" contenteditable="true" data-direccion="ads">${value.direccion}</td>
+            <td class="${clase_par}" contenteditable="true" data-correo="ads">${value.correo}</td>
+            <td class='able-action-buttons ${clase_par}'>
                 <button class='btn btn-warning btn-sm' title='Modificar' onclick='modificarCliente(${value.id})'>
                     <i class='bi bi-pencil-square'></i>
                 </button>
