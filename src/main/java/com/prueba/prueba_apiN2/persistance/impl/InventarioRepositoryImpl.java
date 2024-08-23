@@ -42,8 +42,9 @@ public class InventarioRepositoryImpl implements InventarioRepository {
         InventarioEntity existingInventarioEntity = JPAInventarioRepository.findById(taskId)
                 .orElseThrow(() -> new NotFoundException("Task not found"));
 
-        existingInventarioEntity.setNombre(inventarioModel.getNombre());
         existingInventarioEntity.setFecha_registro(inventarioModel.getFecha_registro());
+        existingInventarioEntity.setNota(inventarioModel.getNota());
+        existingInventarioEntity.setCantidad(inventarioModel.getCantidad());
 
         InventarioEntity savedInventarioEntity = JPAInventarioRepository.save(existingInventarioEntity);
 

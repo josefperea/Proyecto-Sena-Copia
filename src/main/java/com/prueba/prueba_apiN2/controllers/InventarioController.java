@@ -1,10 +1,13 @@
 package com.prueba.prueba_apiN2.controllers;
 
 import com.prueba.prueba_apiN2.config.InventarioMapper;
+import com.prueba.prueba_apiN2.config.ProductoMapper;
 import com.prueba.prueba_apiN2.controllers.dtos.InventarioDTO;
+import com.prueba.prueba_apiN2.controllers.dtos.ProductoDTO;
 import com.prueba.prueba_apiN2.services.InventarioService;
 import com.prueba.prueba_apiN2.services.models.InventarioModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +29,10 @@ public class InventarioController {
     public ResponseEntity<InventarioDTO> saveInventario(@RequestBody InventarioDTO request) {
         InventarioDTO response = InventarioMapper.toDTO(
                 inventarioService.saveInventario(
-                        InventarioModel.create(request.getNombre(),
-                                request.getFecha_registro())
+                        InventarioModel.create(request.getFecha_registro(), request.getNota(),
+                                request.getProductoId(),
+                                request.getNombreProducto(),
+                                request.getCantidad())
                 )
         );
 
@@ -38,8 +43,12 @@ public class InventarioController {
     public ResponseEntity<InventarioDTO> updateInventario(@PathVariable Long inventarioId, @RequestBody InventarioDTO request) {
         InventarioDTO response = InventarioMapper.toDTO(
                 inventarioService.updateInventario(
-                        inventarioId, request.getNombre(),
-                        request.getFecha_registro()
+                        inventarioId,
+                        request.getFecha_registro(),
+                        request.getNota(),
+                        request.getProductoId(),
+                        request.getNombreProducto(),
+                        request.getCantidad()
                         )
         );
 
@@ -58,10 +67,16 @@ public class InventarioController {
     }
 
     @GetMapping("/getInventario")
-    public ResponseEntity<List<InventarioDTO>> getInventario() {
-        List<InventarioDTO> response = InventarioMapper.toDTOList(inventarioService.getInventarios());
+    public ResponseEntity<?> getInventario() {
+        try {
+            List<InventarioDTO> response = InventarioMapper.toDTOList(inventarioService.getInventarios());
 
-        return ResponseEntity.ok(response);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
+
     }
 
     @DeleteMapping("/{inventarioId}")

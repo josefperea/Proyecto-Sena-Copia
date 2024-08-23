@@ -11,17 +11,26 @@ public class InventarioEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre")
-    private String nombre;
-
     @Column(name = "fecha_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime fecha_registro;
 
-    public InventarioEntity(Long id, String nombre, LocalDateTime fecha_registro) {
+    @Column(name = "nota")
+    private String nota;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "producto_id", referencedColumnName = "id")
+    private ProductoEntity producto; // Relación con ProductoEntity
+
+    @Column(name = "cantidad")
+    private int cantidad;
+
+    public InventarioEntity(Long id, LocalDateTime fecha_registro, String nota, ProductoEntity producto, int cantidad) {
         this.id = id;
-        this.nombre = nombre;
         this.fecha_registro = fecha_registro;
+        this.nota = nota;
+        this.producto = producto;
+        this.cantidad = cantidad;
     }
 
     public InventarioEntity() {
@@ -35,19 +44,35 @@ public class InventarioEntity {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public LocalDateTime getFecha_registro() {
         return fecha_registro;
     }
 
     public void setFecha_registro(LocalDateTime fecha_registro) {
         this.fecha_registro = fecha_registro;
+    }
+
+    public String getNota() {
+        return nota;
+    }
+
+    public void setNota(String nota) {
+        this.nota = nota;
+    }
+
+    public ProductoEntity getProducto() {
+        return producto;
+    }
+
+    public void setProducto(ProductoEntity producto) {
+        this.producto = producto;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 }

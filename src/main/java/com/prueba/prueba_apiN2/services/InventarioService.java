@@ -1,5 +1,6 @@
 package com.prueba.prueba_apiN2.services;
 
+import com.prueba.prueba_apiN2.persistance.entities.ProductoEntity;
 import com.prueba.prueba_apiN2.services.models.InventarioModel;
 import com.prueba.prueba_apiN2.services.models.NotFoundException;
 import com.prueba.prueba_apiN2.services.repositories.InventarioRepository;
@@ -20,17 +21,21 @@ public class InventarioService {
         return inventarioRepository.saveInventario(inventarioModel);
     }
 
-    public InventarioModel updateInventario(Long inventarioId, String nombre, LocalDateTime fecha_registro) {
+    public InventarioModel updateInventario(Long inventarioId, LocalDateTime fecha_registro,
+                                            String nota, Long productoId, String nombreProducto, int cantidad) {
         Optional<InventarioModel> optionalInventarioModel = inventarioRepository.getInventario(inventarioId);
 
         if (optionalInventarioModel.isEmpty()) {
-            throw new NotFoundException("Task not found");
+            throw new NotFoundException("Inventario no encontrado");
         }
 
         return inventarioRepository.updateInventario(inventarioId, InventarioModel.fromData(
                 inventarioId,
-                nombre,
-                fecha_registro
+                fecha_registro,
+                nota,
+                productoId,
+                nombreProducto,
+                cantidad
         ));
     }
 
@@ -53,7 +58,7 @@ public class InventarioService {
         List<InventarioModel> optionalInventarioModel = inventarioRepository.getAllInventarios();
 
         if (optionalInventarioModel.isEmpty()) {
-            throw new NotFoundException("Clients not found");
+            throw new NotFoundException("No se encontraron inventarios");
         }
 
         return optionalInventarioModel;

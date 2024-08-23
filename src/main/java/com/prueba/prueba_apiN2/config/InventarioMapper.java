@@ -2,6 +2,7 @@ package com.prueba.prueba_apiN2.config;
 
 import com.prueba.prueba_apiN2.controllers.dtos.InventarioDTO;
 import com.prueba.prueba_apiN2.persistance.entities.InventarioEntity;
+import com.prueba.prueba_apiN2.persistance.entities.ProductoEntity;
 import com.prueba.prueba_apiN2.services.models.InventarioModel;
 
 import java.util.ArrayList;
@@ -35,24 +36,35 @@ public class InventarioMapper {
     public static InventarioDTO toDTO(InventarioModel model) {
         return new InventarioDTO(
                 model.getId(),
-                model.getNombre(),
-                model.getFecha_registro()
+                model.getFecha_registro(),
+                model.getNota(),
+                model.getProductoId(), // ID del producto
+                model.getNombreProducto(), // Nombre del producto
+                model.getCantidad()
         );
     }
 
     public static InventarioModel toModel(InventarioEntity entity) {
         return new InventarioModel(
                 entity.getId(),
-                entity.getNombre(),
-                entity.getFecha_registro()
+                entity.getFecha_registro(),
+                entity.getNota(),
+                entity.getProducto() != null ? entity.getProducto().getId() : null, // Obtener el ID del producto
+                entity.getProducto() != null ? entity.getProducto().getNombre() : null, // Obtener el nombre del producto
+                entity.getCantidad()
         );
     }
 
     public static InventarioEntity toEntity(InventarioModel model) {
+        ProductoEntity producto = new ProductoEntity();
+        producto.setId(model.getProductoId());
+
         return new InventarioEntity(
                 model.getId(),
-                model.getNombre(),
-                model.getFecha_registro()
+                model.getFecha_registro(),
+                model.getNota(),
+                producto,
+                model.getCantidad()
         );
     }
 }
