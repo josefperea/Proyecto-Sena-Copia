@@ -10,6 +10,7 @@ public class UsuarioEntity {
 
     @Column(name = "usuario")
     private String usuario;
+    @Column(name = "clave")
     private String clave;
 
     public UsuarioEntity(Long id, String usuario, String clave) {

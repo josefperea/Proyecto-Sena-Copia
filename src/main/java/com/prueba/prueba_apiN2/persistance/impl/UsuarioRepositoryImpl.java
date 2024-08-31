@@ -1,5 +1,7 @@
 package com.prueba.prueba_apiN2.persistance.impl;
 
+import com.prueba.prueba_apiN2.config.UsuarioMapper;
+import com.prueba.prueba_apiN2.persistance.entities.UsuarioEntity;
 import com.prueba.prueba_apiN2.persistance.impl.jpa.JPAUsuarioRepository;
 import com.prueba.prueba_apiN2.services.models.UsuarioModel;
 import com.prueba.prueba_apiN2.services.repositories.UsuarioRepository;
@@ -17,9 +19,9 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     }
 
     @Override
-    public Optional<UsuarioModel> findByUsuario(String usuario) {
-        Optional<UsuarioModel> usuarioEntity = findByUsuario(usuario);
-        return usuarioEntity;
-    }
+    public Optional<UsuarioModel> findByUsuario(String usuario, String clave) {
+        Optional<UsuarioEntity> usuarioEntity = jpaUsuarioRepository.findByUsuarioAndClave(usuario, clave);
 
+        return usuarioEntity.isPresent() ? Optional.of(UsuarioMapper.toModel(usuarioEntity.get())) : Optional.empty();
+    }
 }

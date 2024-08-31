@@ -1,6 +1,5 @@
 package com.prueba.prueba_apiN2.services;
 
-import com.prueba.prueba_apiN2.persistance.entities.ProductoEntity;
 import com.prueba.prueba_apiN2.services.models.InventarioModel;
 import com.prueba.prueba_apiN2.services.models.NotFoundException;
 import com.prueba.prueba_apiN2.services.repositories.InventarioRepository;

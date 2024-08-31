@@ -1,7 +1,5 @@
 package com.prueba.prueba_apiN2.services.models;
 
-import com.prueba.prueba_apiN2.persistance.entities.ProductoEntity;
-
 import java.time.LocalDateTime;
 
 public class InventarioModel {

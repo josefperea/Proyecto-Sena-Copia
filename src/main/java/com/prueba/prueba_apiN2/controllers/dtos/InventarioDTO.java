@@ -1,8 +1,6 @@
 package com.prueba.prueba_apiN2.controllers.dtos;
 
 
-import com.prueba.prueba_apiN2.persistance.entities.ProductoEntity;
-
 import java.time.LocalDateTime;
 
 public class InventarioDTO {

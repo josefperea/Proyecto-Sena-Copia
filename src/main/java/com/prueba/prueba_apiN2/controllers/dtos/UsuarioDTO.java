@@ -1,6 +1,5 @@
 package com.prueba.prueba_apiN2.controllers.dtos;
 
-
 public class UsuarioDTO {
     private Long id;
     private String usuario;

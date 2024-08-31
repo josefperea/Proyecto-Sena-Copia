@@ -1,6 +1,5 @@
 package com.prueba.prueba_apiN2.services;
 
-import com.prueba.prueba_apiN2.services.models.ClienteModel;
 import com.prueba.prueba_apiN2.services.models.ProductoModel;
 import com.prueba.prueba_apiN2.services.models.NotFoundException;
 import com.prueba.prueba_apiN2.services.repositories.ProductoRepository;
