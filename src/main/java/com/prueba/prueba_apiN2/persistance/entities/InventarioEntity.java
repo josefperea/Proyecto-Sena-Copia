@@ -1,6 +1,7 @@
 package com.prueba.prueba_apiN2.persistance.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -11,8 +12,9 @@ public class InventarioEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "fecha_registro")
+    @Column(name = "fecha_registro", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private LocalDateTime fecha_registro;
 
     @Column(name = "nota")

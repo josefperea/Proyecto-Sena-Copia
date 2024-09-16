@@ -1,6 +1,12 @@
 $(document).ready(function() {
 
     function loadContent(page) {
+
+        if(localStorage.getItem("session") == null) {
+            window.location.href = "/app/index.html";
+            return;
+        }
+
         $('#contenido-principal').load(page, function(response, status, xhr) {
             if (status === "error") {
                 var msg = "Lo sentimos, hubo un error: ";

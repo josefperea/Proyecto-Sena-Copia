@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// Cuando se logra acceder se conservan los datos en local storage
 function login(data) {
     fetch('http://localhost:8080/app/usuario/login', {
         method: 'POST',

@@ -1,4 +1,11 @@
+// Cargar páginas dinámicamente
 function loadContent(page) {
+
+    if( localStorage.getItem("session") == null ) {
+        window.location.href = "/app/index.html";
+        return;
+    }
+
     $('#contenido-principal').load(page, function (response, status, xhr) {
         if (status === "error") {
             var msg = "Lo sentimos, hubo un error: ";
@@ -61,6 +68,7 @@ function showAlertModal(message, type = 'success', title = "Alerta", automodal) 
     }
 }
 
+// Restaura los estilos de la página al ocltar la modal
 function restoreBodyStyles(modalInstance, modalElement) {
     const backdrop = document.querySelector('.modal-backdrop');
     if (backdrop) {
@@ -72,6 +80,7 @@ function restoreBodyStyles(modalInstance, modalElement) {
     }
 }
 
+// Se agrega evento para cerrar sesión
 if (document.getElementById("logout")) {
     document.getElementById("logout").addEventListener("click", () => {
         localStorage.clear();
@@ -79,15 +88,17 @@ if (document.getElementById("logout")) {
     });
 }
 
+// Se cambia el nombre del usuario dinámicamente
 if (document.getElementById("titulo-usuario")) {
     document.getElementById("titulo-usuario").innerText = localStorage.getItem("usuario");
 }
 
-
+// Borra caracteres diferentes a númericos (Inventario)
 function editableTDNumber(td) {
     td.textContent = td.textContent.replace(/[^0-9]/g, '');
 }
 
+// Evita que ingrese caracteres que no sean númericos (Inventario)
 function testTDNumber(event) {
     const key = event.key;
     if (!/^[0-9\b]|Backspace|Delete|Tab|ArrowLeft|ArrowRight|ArrowUp|ArrowDown/.test(key)) {
@@ -95,6 +106,7 @@ function testTDNumber(event) {
     }
 }
 
+// Método para validar dinámicamente los campos obligatorios de los formularios
 function comprobarCamposObligatorios(nombre_formulario) {
 
     let formulario = document.querySelectorAll("#" + nombre_formulario + " input, " + "#" + nombre_formulario + " select");
@@ -106,6 +118,7 @@ function comprobarCamposObligatorios(nombre_formulario) {
     return vacios;
 }
 
+// Restringe el uso del teclado (lista desplegable)
 function evitarTeclas(campo, event) {
     campo.value="";
     event.preventDefault();
