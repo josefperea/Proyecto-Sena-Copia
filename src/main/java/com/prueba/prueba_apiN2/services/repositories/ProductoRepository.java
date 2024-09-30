@@ -12,6 +12,8 @@ public interface ProductoRepository {
 
     Optional<ProductoModel> getProducto(Long id);
 
+    ProductoModel getProductoModel(Long id);
+
     void deleteProducto(Long productoId);
 
     List<ProductoModel> getAllProductos();

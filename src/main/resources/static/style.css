@@ -133,3 +133,181 @@ table td input {
     height: 400px;
     object-fit: cover;
 }
+
+td img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+
+
+
+/* IMAGEN */
+
+
+
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal-image {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content-image {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+#imagen-modal {
+    width: 350px;
+    height: 350px;
+}
+
+/* Add Animation */
+.modal-content-image, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content-image {
+        width: 100%;
+    }
+}
+
+
+
+
+/* Estilos para ocultar el input de archivo */
+.input-imagen {
+    display: none;
+}
+
+/* Estilo del botón que reemplaza al input */
+.btn-subir {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    border: none;
+    position: relative;
+}
+
+/* Tooltip personalizado */
+.btn-subir[data-tooltip]:hover::after {
+    content: attr(data-tooltip); /* Contenido del tooltip */
+    position: absolute;
+    top: -30px; /* Posiciona arriba del botón */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Fija el ancho de las columnas */
+}
+
+thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed; /* Asegura que el ancho de las columnas se mantenga */
+}
+
+tbody {
+    display: block;
+    max-height: 500px; /* Altura máxima para el tbody */
+    overflow-y: auto;
+    overflow-x: hidden; /* Solo scroll vertical */
+    width: 100%;
+}
+
+thead th, tbody td {
+    padding: 10px;
+    text-align: left;
+    width: 25%; /* Asegura que las celdas tengan el mismo ancho en todas las columnas */
+    box-sizing: border-box; /* Evita desbordamientos */
+}
+
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed; /* Fija el ancho de las columnas en las filas del cuerpo */
+}
+
+table td input {
+    width: -webkit-fill-available;
+}

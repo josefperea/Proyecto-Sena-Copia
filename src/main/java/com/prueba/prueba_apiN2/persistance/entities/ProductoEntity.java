@@ -25,14 +25,17 @@ public class ProductoEntity {
 
     @Column(name = "fecha_vencimiento")
     private Date fecha_vencimiento;
+    @Column(name = "imagen_url")
+    private String imagen_url;
 
-    public ProductoEntity(Long id, String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento) {
+    public ProductoEntity(Long id, String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento, String imagen_url) {
         this.id = id;
         this.cod_barras = cod_barras;
         this.nombre = nombre;
         this.unidad_medida = unidad_medida;
         this.precio = precio;
         this.fecha_vencimiento = fecha_vencimiento;
+        this.imagen_url = imagen_url;
     }
 
     public ProductoEntity() {
@@ -84,5 +87,14 @@ public class ProductoEntity {
 
     public void setFecha_vencimiento(Date fecha_vencimiento) {
         this.fecha_vencimiento = fecha_vencimiento;
+    }
+
+    // Getters y Setters
+    public String getImagen_url() {
+        return imagen_url;
+    }
+
+    public void setImagen_url(String imagen_url) {
+        this.imagen_url = imagen_url;
     }
 }

@@ -10,21 +10,25 @@ public class ProductoModel {
     private float precio;
     private Date fecha_vencimiento;
 
-    public ProductoModel(Long id, String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento) {
+    private String imagen_url;
+
+    public ProductoModel(Long id, String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento, String imagen_url) {
         this.id = id;
         this.cod_barras = cod_barras;
         this.nombre = nombre;
         this.unidad_medida = unidad_medida;
         this.precio = precio;
         this.fecha_vencimiento = fecha_vencimiento;
+        this.imagen_url = imagen_url;
     }
 
-    public ProductoModel(String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento) {
+    public ProductoModel(String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento, String imagen_url) {
         this.cod_barras = cod_barras;
         this.nombre = nombre;
         this.unidad_medida = unidad_medida;
         this.precio = precio;
         this.fecha_vencimiento = fecha_vencimiento;
+        this.imagen_url = imagen_url;
     }
 
     public Long getId() {
@@ -71,11 +75,19 @@ public class ProductoModel {
         this.fecha_vencimiento = fecha_vencimiento;
     }
 
-    public static ProductoModel create(String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento) {
-        return new ProductoModel(cod_barras, nombre, unidad_medida, precio, fecha_vencimiento);
+    public String getImagen_url() {
+        return imagen_url;
     }
 
-    public static ProductoModel fromData(Long id, String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento) {
-        return new ProductoModel(id, cod_barras, nombre, unidad_medida, precio, fecha_vencimiento);
+    public void setImagen_url(String imagen_url) {
+        this.imagen_url = imagen_url;
+    }
+
+    public static ProductoModel create(String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento, String imagen_url) {
+        return new ProductoModel(cod_barras, nombre, unidad_medida, precio, fecha_vencimiento, imagen_url);
+    }
+
+    public static ProductoModel fromData(Long id, String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento, String imagen_url) {
+        return new ProductoModel(id, cod_barras, nombre, unidad_medida, precio, fecha_vencimiento, imagen_url);
     }
 }

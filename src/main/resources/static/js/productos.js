@@ -39,6 +39,8 @@
 
         let odd = false;
 
+        let tlpobj = null;
+
         productos.forEach((value) => {
             if (odd) { odd = false; clase_par = "par"; }
             else { odd = true; clase_par = "impar"; }
@@ -60,6 +62,17 @@
             </td>
             <td class="${clase_par}" contenteditable="true" data-precio="">${value.precio}</td>
             <td class="${clase_par}" data-fecha_vencimiento="">${value.fecha_vencimiento}</td>
+            <td class="${clase_par}" data-imagen_url="">
+                <input type="file" class="input-imagen" id="input-imagen-${value.id}" onchange="subirImagenMod(${value.id}, this.files[0]);" accept="image/png, image/jpeg, image/jpg, image/gif">
+                <label class="btn-subir" for="input-imagen-${value.id}" data-tooltip="">
+                    Subir imagen
+                </label>
+                <script> 
+                    tlpobj = document.getElementById("input-imagen-${value.id}");
+                    actualizarTooltip('${value.imagen_url}', tlpobj.nextElementSibling);
+                </script>
+                <img id="myImg" src="${value.imagen_url}" alt="" onclick="modal(this)">
+            </td>
             <td class='able-action-buttons ${clase_par}'>
                 <button class='btn btn-warning btn-sm' title='Modificar' onclick='modificarProducto(${value.id})'>
                     <i class='bi bi-pencil-square'></i>
@@ -71,6 +84,58 @@
         </tr>`;
         });
 
-            $("#tabla-productos tbody").html(texto);
+        $("#tabla-productos tbody").html(texto);
+    }
 
+
+    function actualizarTooltip(input, label) {
+        if (label) {
+            label.dataset.tooltip = input;
+        } else {
+            label.dataset.tooltip = "Subir imagen";
+        }
+    }
+    function modal(img) {
+
+        var modal = document.getElementById("modalImage");
+        var modalImg = document.getElementById("imagen-modal");
+        var captionText = document.getElementById("caption");
+
+        modal.style.display = "block";
+        modalImg.src = img.src;
+        captionText.innerHTML = img.alt;
+
+        var span = document.getElementsByClassName("close")[0];
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+    }
+
+    function subirImagenMod(id, file){
+        const formData  = new FormData();
+
+        formData.append("imagen", file);
+
+        fetch('http://localhost:8080/app/productos/subir-imagen/'+id, {
+            method: 'POST',
+            body:formData
+        })
+            .then(response => response.text())
+            .then(result => {
+                showAlertModal("Imagen modificada correctamente", 'success', "Productos", true);
+                console.log(result);
+
+                setTimeout(function() {
+                    loadContent('modulos/productos.html');
+
+                    // const backdrop = document.querySelector('.modal-backdrop');
+
+                }, 2000); // 3000 milisegundos = 3 segundos
+            })
+            .catch(error =>
+            {
+                console.error('Error:', error);
+                console.log('Error al modificar la imagen');
+            });
     }

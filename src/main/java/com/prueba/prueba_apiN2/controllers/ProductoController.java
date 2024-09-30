@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -35,7 +37,8 @@ public class ProductoController {
                                     request.getNombre(),
                                     request.getUnidad_medida(),
                                     request.getPrecio(),
-                                    request.getFecha_vencimiento()
+                                    request.getFecha_vencimiento(),
+                                    request.getImagen_url()
                             )
                     )
             );
@@ -61,7 +64,7 @@ public class ProductoController {
         ProductoDTO response = ProductoMapper.toDTO(
                 productoService.updateProducto(
                         productoId, request.getCod_barras(), request.getNombre(), request.getUnidad_medida(),
-                        request.getPrecio(), request.getFecha_vencimiento()
+                        request.getPrecio(), request.getFecha_vencimiento(), request.getImagen_url()
                 )
         );
 
@@ -102,6 +105,11 @@ public class ProductoController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(e.getMessage());
         }
+    }
 
+    @PostMapping("/subir-imagen/{id}")
+    public ResponseEntity<String> subirImagenProducto(@PathVariable Long id, @RequestParam("imagen") MultipartFile archivo) throws IOException {
+        String urlImagen = productoService.subirImagen(id, archivo);
+        return ResponseEntity.ok("Imagen subida correctamente. URL: " + urlImagen);
     }
 }

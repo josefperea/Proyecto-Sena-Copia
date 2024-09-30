@@ -37,6 +37,11 @@ $(document).ready(function() {
         loadContent('modulos/clientes.html');
     });
 
+    $('#formulario').click(function(event) {
+        event.preventDefault();
+        loadContent('modulos/dashboard.html');
+    });
+
     
     loadContent('modulos/home.html');
 

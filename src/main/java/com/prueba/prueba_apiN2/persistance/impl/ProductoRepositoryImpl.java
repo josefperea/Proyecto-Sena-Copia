@@ -30,6 +30,13 @@ public class ProductoRepositoryImpl implements ProductoRepository {
     }
 
     @Override
+    public ProductoModel getProductoModel(Long productoId) {
+        Optional<ProductoEntity> productoEntity = jpaProductoRepository.findById(productoId);
+
+        return productoEntity.isPresent() ? ProductoMapper.toModel(productoEntity.get()) : ProductoMapper.toModel(null);
+    }
+
+    @Override
     public ProductoModel saveProducto(ProductoModel productoModel) {
         ProductoEntity productoEntity = ProductoMapper.toEntity(productoModel);
         productoEntity = jpaProductoRepository.save(productoEntity);
@@ -46,6 +53,7 @@ public class ProductoRepositoryImpl implements ProductoRepository {
         existingProductoEntity.setUnidad_medida(updatedTask.getUnidad_medida());
         existingProductoEntity.setPrecio(updatedTask.getPrecio());
         existingProductoEntity.setFecha_vencimiento(updatedTask.getFecha_vencimiento());
+        existingProductoEntity.setImagen_url(updatedTask.getImagen_url());
 
         ProductoEntity savedProductoEntity = jpaProductoRepository.save(existingProductoEntity);
 

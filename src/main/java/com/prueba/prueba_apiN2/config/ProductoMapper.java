@@ -39,7 +39,8 @@ public class ProductoMapper {
                 model.getNombre(),
                 model.getUnidad_medida(),
                 model.getPrecio(),
-                model.getFecha_vencimiento()
+                model.getFecha_vencimiento(),
+                model.getImagen_url()
         );
     }
 
@@ -50,7 +51,8 @@ public class ProductoMapper {
                 entity.getNombre(),
                 entity.getUnidad_medida(),
                 entity.getPrecio(),
-                entity.getFecha_vencimiento()
+                entity.getFecha_vencimiento(),
+                entity.getImagen_url()
         );
     }
 
@@ -61,7 +63,8 @@ public class ProductoMapper {
                 model.getNombre(),
                 model.getUnidad_medida(),
                 model.getPrecio(),
-                model.getFecha_vencimiento()
+                model.getFecha_vencimiento(),
+                model.getImagen_url()
         );
     }
 }

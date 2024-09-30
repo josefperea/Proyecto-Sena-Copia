@@ -14,14 +14,16 @@ public class ProductoDTO {
     private float precio;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fecha_vencimiento;
+    private String imagen_url;
 
-    public ProductoDTO(Long id, String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento) {
+    public ProductoDTO(Long id, String cod_barras, String nombre, String unidad_medida, float precio, Date fecha_vencimiento, String imagen_url) {
         this.id = id;
         this.cod_barras = cod_barras;
         this.nombre = nombre;
         this.unidad_medida = unidad_medida;
         this.precio = precio;
         this.fecha_vencimiento = fecha_vencimiento;
+        this.imagen_url = imagen_url;
     }
 
 
@@ -51,4 +53,10 @@ public class ProductoDTO {
     public Date getFecha_vencimiento() {
         return fecha_vencimiento;
     }
+
+    public String getImagen_url() {
+        return imagen_url;
+    }
+
+
 }
