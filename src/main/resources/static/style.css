@@ -159,7 +159,7 @@ td img {
 .modal-image {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 2; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -263,7 +263,7 @@ td img {
 .btn-subir[data-tooltip]:hover::after {
     content: attr(data-tooltip); /* Contenido del tooltip */
     position: absolute;
-    top: -30px; /* Posiciona arriba del botón */
+    top: -10px; /* Posiciona arriba del botón */
     left: 50%;
     transform: translateX(-50%);
     background-color: #333;

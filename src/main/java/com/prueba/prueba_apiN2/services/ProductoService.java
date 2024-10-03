@@ -55,7 +55,8 @@ public class ProductoService {
         return optionalProductoModel.get();
     }
 
-    public void deleteProducto(Long productoId) {
+    public void deleteProducto(Long productoId) throws IOException {
+        this.quitarImagen(productoId);
         productoRepository.deleteProducto(productoId);
     }
 
@@ -76,7 +77,7 @@ public class ProductoService {
 
         // 2. Eliminar la imagen anterior (si existe)
         if ( !producto.getImagen_url().isEmpty() && producto.getImagen_url().contains("/productos/") )  {
-            Path rutaImagenAnterior = Paths.get(directorioImagenes + producto.getImagen_url().substring("/productos/".length()));
+            Path rutaImagenAnterior = Paths.get(directorioImagenes + producto.getImagen_url().substring("uploads/productos/".length()));
             Files.deleteIfExists(rutaImagenAnterior);  // Borra la imagen anterior si existe
         }
 
@@ -93,6 +94,18 @@ public class ProductoService {
         productoRepository.saveProducto(producto);
 
         return urlImagen;  // Retornar la URL de la imagen
+    }
+
+    public boolean quitarImagen(Long idProducto) throws IOException {
+       // 1. Buscar el producto en la base de datos
+        ProductoModel producto = productoRepository.getProductoModel(idProducto);
+
+        // 2. Eliminar la imagen anterior (si existe)
+        if ( !producto.getImagen_url().isEmpty() && producto.getImagen_url().contains("/productos/") )  {
+            Path rutaImagenAnterior = Paths.get(directorioImagenes + producto.getImagen_url().substring("uploads/productos/".length()));
+            return Files.deleteIfExists(rutaImagenAnterior);
+        }
+        return false;
     }
 
 }

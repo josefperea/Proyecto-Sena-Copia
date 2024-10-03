@@ -59,6 +59,7 @@ public class ProductoController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("Ocurrió un error inesperado: " + e.getMessage());
     }
+
     @PutMapping("/{productoId}")
     public ResponseEntity<ProductoDTO> updateProducto(@PathVariable Long productoId, @RequestBody ProductoDTO request) {
         ProductoDTO response = ProductoMapper.toDTO(
@@ -100,6 +101,7 @@ public class ProductoController {
 
         try {
             productoService.deleteProducto(productoId);
+//            productoService.quitarI   magen(productoId);
             return ResponseEntity.ok("ok");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
