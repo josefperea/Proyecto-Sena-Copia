@@ -19,10 +19,12 @@ public class FileController {
     @GetMapping("/uploads/productos/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> getFile(@PathVariable String filename) throws MalformedURLException {
-        Path filePath = Paths.get("C:/Users/Santiago/Documents/GitHub/Proyecto-Sena-/uploads/productos").resolve(filename);
+        //La ruta la debe tomar segun el directorio donde se aloje el proyecto, para que se lea desde cualquier pc sin problema.
+        String basePath = System.getProperty("user.dir") + "/uploads/productos";
+        Path filePath = Paths.get(basePath).resolve(filename);
         Resource file = new UrlResource(filePath.toUri());
 
-        if (file.exists() || file.isReadable()) {
+        if (file.exists() && file.isReadable()) {
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
                     .body(file);
